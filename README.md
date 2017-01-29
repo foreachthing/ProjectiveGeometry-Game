@@ -11,7 +11,8 @@ How to run:
 Place 31 images in "input_images"
 
 
-Thabn run:
+Than run:
+
     python create_cards.py -d input_images_directory -o out_images_directory
 
 You will get images like the examples in out_images.
