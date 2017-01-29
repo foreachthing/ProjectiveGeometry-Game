@@ -15,7 +15,9 @@ Than run:
 
     python create_cards.py -d input_images_directory -o out_images_directory
 
-You will get images like the examples in out_images.
+You will get images like the examples in out_images like these:
+
+<img high=400, width=400 src="https://github.com/georghildebrand/ProjectiveGeometry-Dobble-Game/blob/master/out_images/Card-0.png"></img>
 
 
 Its tested with python 2.7 and order of 5 --> 31 cards. For other configs it might be neccessary to change the code in draw.py because it may create overlays etc.
