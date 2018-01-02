@@ -7,6 +7,11 @@ from draw import *
 
 
 def create_cards(order):
+    # nice reading on projective planes:
+    # http://www.mathpuzzle.com/MAA/47-Fano/mathgames_05_30_06.html
+    # In a projective plane, there are no parallel lines.
+    # A projective plane of order n has n**2 + n + 1 points and lines,
+    # with n+1 points on each line, and n+1 lines on each point.
     for min_factor in range(2, 1 + int(order ** 0.5)):
         if order % min_factor == 0:
             break
@@ -41,6 +46,8 @@ def make_card_pictures(cards, npics, order,imagedir, out_dir):
         outfilename = os.path.join(out_dir, basename)
         files = glob(imagedir+"/*")
         # shuffle images
+        # adding and shuffeling the icon images
+        # which are put on the card
         card = list(card)
         random.shuffle(card)
         generate_card_image([files[i] for i in card], outfilename)
@@ -73,4 +80,4 @@ if __name__ == "__main__":
     cards, num_pictures = create_cards(order)
     logging.info("There are {0} cards and {1} pictures\n\n".format(len(cards),num_pictures))
     check_cards(cards)
-    make_card_pictures(cards, num_pictures,order,imagedir=args.input_image_directory, out_dir=args.output_image_directory)
+    make_card_pictures(cards, num_pictures, order, imagedir=args.input_image_directory, out_dir=args.output_image_directory)

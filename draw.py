@@ -8,6 +8,15 @@ from glob import glob
 import math
 import random
 
+
+def make_square(im, min_size=256, fill_color=(0, 0, 0, 0)):
+    x, y = im.size
+    size = max(min_size, x, y)
+    new_im = Image.new('RGBA', (size, size), fill_color)
+    new_im.paste(im, ((size - x) / 2, (size - y) / 2))
+    return new_im
+
+
 def generate_card_image(filenames, output_fn, width=800, height=800):
     '''
     :date: 12.11.2016
@@ -25,25 +34,38 @@ def generate_card_image(filenames, output_fn, width=800, height=800):
     bg_w, bg_h = background.size
     # resize images
     # less than 4x4
-    image_end_size = bg_w/4. , bg_w/4.
-    #print(image_end_size)
+    image_end_size = bg_w/4., bg_w/4.
     logging.debug("Resizing images to {} x {}!".format(image_end_size[0], image_end_size[1]))
     for i, img in enumerate(images):
         # replace images in place
+        # make images symmetric
+
+        # print(img.size)
         # add some randomness to size
         # add some randomness to rotation
-        rand_scaling = random.sample([1.0,0.8,0.9,1.0],1)[0] # scale size
-        rand_angel = random.sample(range(0,360),1)[0] # select randoms from 360 degrees
+        rand_scaling = random.sample([0.9, 0.85, 0.95, 0.99], 1)[0]  # scale size
+        rand_angel = random.sample(range(0, 360), 1)[0]  # select randoms from 360 degrees
         rand_size = int(image_end_size[0]*rand_scaling), int(image_end_size[1]*rand_scaling)
-        _ = img.thumbnail(rand_size, Image.ANTIALIAS)
-        # rotate the image
-        images[i] = img.rotate( rand_angel, expand=0 ).resize(rand_size)
+        # rotate expand resize
+        img = img.rotate(rand_angel, expand=1).resize(rand_size)  # rotate
+        # remove transparent backgrounds
+        try:
+            canvas = Image.new('RGBA', img.size, (255, 255, 255, 255))  # Empty canvas colour (r,g,b,a)
+            # convert our image to RGB, so its masking
+            img = img.convert("RGBA")
+            canvas.paste(img, mask=img)  # Paste the image onto the canvas, using it's alpha channel as mask
+            canvas.thumbnail([width, height], Image.ANTIALIAS)
+            images[i] = canvas  # save back to array
+            # inbetween save for debugging
+            # img.save(filenames[i].split('/')[-1] + '.png')
+        except ValueError:
+            images[i] = img
+
     # icon image width and height
     # take first one as reference
     img_w, img_h = images[0].size
     # center of the iamge
     center_offset = (int((bg_w - img_w) / 2), int((bg_h - img_h) / 2))
-    #print("Center offset", center_offset)
     for i, img in enumerate(images):
         # substract center image and move angle
         img_w, img_h = img.size
@@ -66,11 +88,11 @@ def generate_card_image(filenames, output_fn, width=800, height=800):
             #print(filenames[i], img_offset)
         # save image, third param indicates the mask to be used
         # set background of the image
-        background.paste(img, (int(img_offset[0]), int(img_offset[1])),mask=None)
+        background.paste(img, (int(img_offset[0]), int(img_offset[1])), mask=None)
         # add 10 % boarder
-        background_with_boarder = ImageOps.expand(background,border=int(background.size[0]/10),fill='white')
+        background_with_boarder = ImageOps.expand(background, border=int(background.size[0]/10), fill='white')
     #background = background.crop((0, 0, max_x, max_y))
     background_with_boarder.save(output_fn)
-    return output_fn
+    return True
 
 
