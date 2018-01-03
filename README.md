@@ -6,6 +6,13 @@ At one of these afternoons we were together with the family and someone had this
 After playing it for a while there was the idea that it would be an amazing idea to have the game with personalized pictures as christmas present.
 So I went to the web and quickly found an related question on stackoverflow, with a nice python example implementation already on github.
 
+The game:
+========
+* On each card are O unique pictures (i.e. a card can't have 2 of the same picture)
+* Given any 2 cards chosen from the deck, there is 1 and only 1 matching picture.
+* Matching pictures may be scaled differently on different cards but that is only to make the game harder (i.e. a small tree still matches a larger tree)
+* You can produce a deck of N cards with N images. N must be prime so there is an order O (also prime number) that satisfies:  N = O² + O + 1. Eg if you want to have a deck with 30+ images you have to have 31 images and 5 images per card. 31 = 5² + 5 +1
+
 Number of Images and Cards:
 ==========
 
