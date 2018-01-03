@@ -6,14 +6,27 @@ At one of these afternoons we were together with the family and someone had this
 After playing it for a while there was the idea that it would be an amazing idea to have the game with personalized pictures as christmas present.
 So I went to the web and quickly found an related question on stackoverflow, with a nice python example implementation already on github.
 
+Number of Images and Cards:
+==========
+
+You can produce a deck of N cards with N images. N must be prime so there is an order O (also prime number) that satisfies:  N = O² + O + 1. Eg if you want to have a deck with 30+ images you have to have 31 images and 5 images per card. 31 = 5² + 5 +1
+
 How to run:
 ==========
 Place 31 images in "input_images"
 
+Requirements:
+=========
+
+You need the pillow package installed
+
+    pip install pillow
 
 Than run:
 
-    python create_cards.py -d input_images_directory -o out_images_directory
+    python create_cards.py -d input_images_directory -o out_images_directory -O number_of_images_per_card
+
+Make sure that the number of images per card matches: N = O² + O + 1 (O: number of images per card, N: number of cards). Otherwise you don't create a finite geometric plane. 
 
 You will get images like the examples in out_images like these:
 
