@@ -16,7 +16,7 @@ How to run:
 Place 31 images in "input_images"
 
 Requirements:
-===========
+=========
 
 You need the pillow package installed
 
