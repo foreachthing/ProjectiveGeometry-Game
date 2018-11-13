@@ -16,7 +16,8 @@ The game:
 Number of Images and Cards:
 ==========
 
-You can produce a deck of N cards with N images. N must be prime so there is an order O (also prime number) that satisfies:  N = O² + O + 1. Eg if you want to have a deck with 30+ images you have to have 31 images and 5 images per card. 31 = 5² + 5 +1
+You can produce a deck of N cards with a number of O + 1 images. O (order) must be prime so the total number of cards is: N = O² + O + 1 . Eg if you want to have a deck with 30+ images you have to have 31 images and 5 images per card. 31 = 5² + 5 +1.
+
 
 How to run:
 ==========
@@ -44,6 +45,7 @@ Its tested with python 2.7 and order of 5 --> 31 cards. For other configs it mig
 You will find the cards of the game in the out_images folder.
 
 For those interested in the Geometry behind: https://de.wikipedia.org/wiki/Fano-Ebene
+Discussion on the combinatorics: [link](https://math.stackexchange.com/questions/1303497/what-is-the-algorithm-to-generate-the-cards-in-the-game-dobble-known-as-spo)
 
 References:
 
