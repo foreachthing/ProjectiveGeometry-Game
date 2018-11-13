@@ -11,12 +11,12 @@ The game:
 * On each card are O unique pictures (i.e. a card can't have 2 of the same picture)
 * Given any 2 cards chosen from the deck, there is 1 and only 1 matching picture.
 * Matching pictures may be scaled differently on different cards but that is only to make the game harder (i.e. a small tree still matches a larger tree)
-* You can produce a deck of N cards with N images. N must be prime so there is an order O (also prime number) that satisfies:  N = O² + O + 1. Eg if you want to have a deck with 30+ images you have to have 31 images and 5 images per card. 31 = 5² + 5 +1
+* You can produce a deck of N cards with N images. N must be prime so there is an order O (also prime number) that satisfies:  N = O² + O + 1. Eg if you want to have a deck with 30+ images you have to have 31 images and 5 images per card. 31 = 5² + 5 +1. So take care, the more cards you need the more images you need to have.
 
 Number of Images and Cards:
 ==========
 
-You can produce a deck of N cards with a number of O + 1 images. O (order) must be prime so the total number of cards is: N = O² + O + 1 . Eg if you want to have a deck with 30+ images you have to have 31 images and 5 images per card. 31 = 5² + 5 +1.
+You can produce a deck of N cards witch requires a number of N images as well. The order O of the system needs to be a prime!  On the cards you can place O + 1 images. O must be prime so the total number of cards is: N = O² + O + 1 . Eg if you want to have a deck with 30+ images you have to have 31 images and 5 images per card. 31 = 5² + 5 +1. So you will also get 31 images.
 
 
 How to run:
