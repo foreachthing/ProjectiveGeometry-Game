@@ -16,7 +16,9 @@ The game:
 Number of Images and Cards:
 ==========
 
-You can produce a deck of N cards witch requires a number of N images as well. The order O of the system needs to be a prime!  On the cards you can place O + 1 images. O must be prime so the total number of cards is: N = O² + O + 1 . Eg if you want to have a deck with 30+ images you have to have 31 images and 5 images per card. 31 = 5² + 5 +1. So you will also get 31 images.
+You can produce a deck of N cards witch requires a number of N images as well. The order O of the system needs to be a prime!  On the cards you can place O + 1 images. O must be prime so the total number of cards is: N = O² + O + 1 . Eg if you want to have a deck with 30+ images you have to have 31 images and 6 images per card. 31 = 5² + 5 +1. So you will also get 31 images.
+
+**NOTE:** Number of images per card is `O+1`. Order of 5 wil give you 6 images per card.
 
 
 How to run:
