@@ -36,7 +36,7 @@ Than run:
 
     python create_cards.py -d input_images_directory -o out_images_directory -O number_of_images_per_card
 
-Make sure that the number of images per card matches: N = O² + O + 1 (O: number of images per card, N: number of cards). Otherwise you don't create a finite geometric plane. 
+Make sure that the number of images per card matches: N = O² + O + 1 (O: number of images per card -1, N: number of cards). Otherwise you don't create a finite geometric plane. 
 
 You will get images like the examples in out_images like these:
 
