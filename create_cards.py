@@ -36,7 +36,7 @@ def check_cards(cards):
                   "have intersection", sorted(card & other_card))
 
 
-def make_card_pictures(cards, npics, order,imagedir, out_dir):
+def make_card_pictures(cards, npics, order, imagedir, out_dir):
 
     # Print out the cards in a picture
     for CardNum, card in enumerate(cards):
@@ -69,9 +69,9 @@ if __name__ == "__main__":
         Original code of block algorithm forked and modified from: https://github.com/WRadigan/pySpot-It
         more information can be found here: https://de.wikipedia.org/wiki/Fano-Ebene
         """)
-    parser.add_argument('-d', '--input_image_directory' ,default='input_images', type=str, help="Takes required images from input dir. For order of 5 it will  take 31")
-    parser.add_argument('-o', '--output_image_directory' ,default='out_images', type=str, help="output directory of images. Default is out_images/")
-    parser.add_argument('-O', '--Order' ,default=5,type=int, help="Order of blocks to compute. Defalt 5 --> 31 cards ")
+    parser.add_argument('-d', '--input_image_directory', default='input_images', type=str, help="Takes required images from input dir. For order of 5 it will  take 31")
+    parser.add_argument('-o', '--output_image_directory', default='out_images', type=str, help="output directory of images. Default is out_images/")
+    parser.add_argument('-O', '--Order', default=5, type=int, help="Order of blocks to compute. Defalt 5 --> 31 cards, 6 images each (O+1)")
     args = parser.parse_args()
     logging.log(logging.INFO, "Starting...")
     #The algorythm only works for numbers where order is a prime number (E.g. [0, 1, 2, 3, 5, 7 , 11]
