@@ -17,7 +17,7 @@ def make_square(im, min_size=256, fill_color=(0, 0, 0, 0)):
     return new_im
 
 
-def generate_card_image(filenames, output_fn, width=800, height=800):
+def generate_card_image(filenames, output_fn, width=2000, height=2000):
     '''
     :date: 12.11.2016
     :author: ghildebrand
@@ -28,7 +28,7 @@ def generate_card_image(filenames, output_fn, width=800, height=800):
     # open all images
     images = [Image.open(filename) for filename in filenames]
     # create white background put color=(0,0,0,0) for transparent
-    background = Image.new(mode='RGBA', size=(width, height), color=(255,255,255,255))
+    background = Image.new(mode='RGBA', size=(width, height), color=(255,255,255,0))
     num_images = len(images)-1 # substract the one in the center
     # angel to move images
     bg_w, bg_h = background.size
@@ -43,14 +43,15 @@ def generate_card_image(filenames, output_fn, width=800, height=800):
         # print(img.size)
         # add some randomness to size
         # add some randomness to rotation
-        rand_scaling = random.sample([0.9, 0.85, 0.95, 0.99], 1)[0]  # scale size
+        # rand_scaling = random.sample([0.9, 0.85, 0.95, 0.99], 1)[0]  # scale size
+        rand_scaling = random.sample(range(50, 100), 1)[0]/100  # scale size
         rand_angel = random.sample(range(0, 360), 1)[0]  # select randoms from 360 degrees
         rand_size = int(image_end_size[0]*rand_scaling), int(image_end_size[1]*rand_scaling)
         # rotate expand resize
         img = img.rotate(rand_angel, expand=1).resize(rand_size)  # rotate
         # remove transparent backgrounds
         try:
-            canvas = Image.new('RGBA', img.size, (255, 255, 255, 255))  # Empty canvas colour (r,g,b,a)
+            canvas = Image.new('RGBA', img.size, (255, 255, 255, 0))  # Empty canvas colour (r,g,b,a)
             # convert our image to RGB, so its masking
             img = img.convert("RGBA")
             canvas.paste(img, mask=img)  # Paste the image onto the canvas, using it's alpha channel as mask
@@ -90,9 +91,8 @@ def generate_card_image(filenames, output_fn, width=800, height=800):
         # set background of the image
         background.paste(img, (int(img_offset[0]), int(img_offset[1])), mask=None)
         # add 10 % boarder
-        background_with_boarder = ImageOps.expand(background, border=int(background.size[0]/10), fill='white')
+        #background_with_boarder = ImageOps.expand(background, border=int(background.size[0]/10), fill='white')
+        background_with_boarder = ImageOps.expand(background, border=int(0), fill='white')
     #background = background.crop((0, 0, max_x, max_y))
     background_with_boarder.save(output_fn)
     return True
-
-
